@@ -1,0 +1,105 @@
+--- a/src/api/services/channel.service.ts
++++ b/src/api/services/channel.service.ts
+@@ -9,7 +9,7 @@
+ import { PrismaRepository, Query } from '@api/repository/repository.service';
+ import { eventManager, waMonitor } from '@api/server.module';
+ import { Events, wa } from '@api/types/wa.types';
+-import { Auth, Chatwoot, ConfigService, HttpServer, Proxy } from '@config/env.config';
++import { Auth, Chatwoot, ConfigService, Database, HttpServer, Proxy } from '@config/env.config';
+ import { Logger } from '@config/logger.config';
+ import { NotFoundException } from '@exceptions';
+ import { Contact, Message, Prisma } from '@prisma/client';
+@@ -716,6 +716,11 @@
+   }
+ 
+   public async fetchChats(query: any) {
++    const dbProvider = this.configService.get<Database>('DATABASE').PROVIDER;
++    if (dbProvider === 'mysql') {
++      return this.fetchChatsMysql(query);
++    }
++
+     const remoteJid = query?.where?.remoteJid
+       ? query?.where?.remoteJid.includes('@')
+         ? query.where?.remoteJid
+@@ -829,6 +834,81 @@
+     return [];
+   }
+ 
++  private async fetchChatsMysql(query: any) {
++    const remoteJid = query?.where?.remoteJid
++      ? query?.where?.remoteJid.includes('@')
++        ? query.where?.remoteJid
++        : createJid(query.where?.remoteJid)
++      : null;
++
++    const take = query?.take ?? 50;
++    const skip = query?.skip ?? 0;
++
++    const whereChat: { instanceId: string; remoteJid?: string } = {
++      instanceId: this.instanceId,
++    };
++
++    if (remoteJid) {
++      whereChat.remoteJid = remoteJid;
++    }
++
++    const chats = await this.prismaRepository.chat.findMany({
++      where: whereChat,
++      orderBy: { updatedAt: 'desc' },
++      take,
++      skip,
++    });
++
++    const mappedResults = await Promise.all(
++      chats.map(async (chat) => {
++        const contact = await this.prismaRepository.contact.findFirst({
++          where: { instanceId: this.instanceId, remoteJid: chat.remoteJid },
++        });
++
++        const lastMessage = await this.prismaRepository.message.findFirst({
++          where: {
++            instanceId: this.instanceId,
++            key: { path: '$.remoteJid', equals: chat.remoteJid },
++          },
++          orderBy: { messageTimestamp: 'desc' },
++        });
++
++        const messageKey = lastMessage?.key as { fromMe?: boolean } | null;
++        const windowStart = chat.createdAt;
++        const windowExpires = chat.createdAt
++          ? new Date(chat.createdAt.getTime() + 24 * 60 * 60 * 1000)
++          : null;
++        const windowActive = windowExpires ? windowExpires > new Date() : false;
++
++        const pushName = chat.remoteJid.includes('@g.us')
++          ? chat.name || contact?.pushName
++          : contact?.pushName || lastMessage?.pushName;
++
++        return {
++          id: contact?.id || null,
++          remoteJid: chat.remoteJid,
++          pushName,
++          profilePicUrl: contact?.profilePicUrl,
++          updatedAt: lastMessage
++            ? new Date(lastMessage.messageTimestamp * 1000)
++            : contact?.updatedAt || chat.updatedAt,
++          windowStart,
++          windowExpires,
++          windowActive,
++          lastMessage: lastMessage
++            ? this.cleanMessageData({
++                ...lastMessage,
++                pushName: messageKey?.fromMe ? 'Você' : lastMessage.pushName,
++              })
++            : undefined,
++          unreadCount: chat.unreadMessages,
++          isSaved: !!contact?.id,
++        };
++      }),
++    );
++
++    return mappedResults;
++  }
++
+   public hasValidMediaContent(message: any): boolean {
+     if (!message?.message) return false;

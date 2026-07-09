@@ -1,0 +1,12 @@
+.env
+.env.local
+.env.production
+*.log
+data/
+
+# Backups locais
+backups/*
+!backups/.gitkeep
+
+# Clone da Evolution API (gerado pelo setup-native.ps1)
+api/

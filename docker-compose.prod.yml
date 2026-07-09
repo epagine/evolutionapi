@@ -1,0 +1,60 @@
+# Evolution API - Sobreposição para produção
+# Uso: docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+#
+# Antes de subir:
+# 1. Ajuste SERVER_URL no .env para o domínio público (https://...)
+# 2. Use senhas fortes em POSTGRES_PASSWORD e AUTHENTICATION_API_KEY
+# 3. Para v2.4+, ative a licença em /manager/login
+
+services:
+  api:
+    image: evoapicloud/evolution-api:latest
+    restart: always
+    ports:
+      - "8080:8080"
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+        reservations:
+          memory: 512M
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+  frontend:
+    restart: always
+    ports:
+      - "3000:80"
+    logging:
+      driver: json-file
+      options:
+        max-size: "5m"
+        max-file: "3"
+
+  redis:
+    restart: always
+    command: redis-server --port 6379 --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
+    logging:
+      driver: json-file
+      options:
+        max-size: "5m"
+        max-file: "3"
+
+  evolution-postgres:
+    restart: always
+    command:
+      - postgres
+      - -c
+      - max_connections=500
+      - -c
+      - listen_addresses=*
+      - -c
+      - shared_buffers=256MB
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"
