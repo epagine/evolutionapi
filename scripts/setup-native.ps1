@@ -59,7 +59,7 @@ try {
 # .env
 if (-not (Test-Path ".env")) {
     $apiKey = New-RandomHex 32
-    Copy-Item ".env.native.example" ".env"
+    Copy-Item ".env.example" ".env"
     (Get-Content ".env" -Raw) -replace 'ALTERE_ESTA_API_KEY', $apiKey | Set-Content ".env" -NoNewline
     Write-Host ".env criado (API KEY gerada)." -ForegroundColor Green
 } else {

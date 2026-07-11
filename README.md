@@ -78,28 +78,17 @@ pm2 save
 
 ---
 
-## Instalação com Docker (opcional)
-
-Se no futuro quiser usar Docker, os arquivos `docker-compose.yml` e `scripts/start.ps1` continuam disponíveis. Veja a seção Docker no histórico do projeto ou execute:
-
-```powershell
-.\scripts\setup.ps1
-.\scripts\start.ps1
-```
-
----
-
 ## Estrutura
 
 ```
 evolution/
 ├── api/                      # Codigo da Evolution API (clone git)
 ├── .env                      # Configuracao (MySQL + Redis local)
-├── .env.native.example       # Modelo para instalacao nativa
+├── .env.example              # Modelo (MySQL nativo)
 ├── scripts/
 │   ├── setup-native.ps1      # Instala tudo (sem Docker)
-│   └── start-native.ps1      # Inicia Redis + API
-├── docker-compose.yml        # Opcional (Docker)
+│   ├── start-native.ps1      # Inicia Redis + API
+│   └── setup.ps1             # Wrapper para o fluxo nativo
 └── backups/
 ```
 

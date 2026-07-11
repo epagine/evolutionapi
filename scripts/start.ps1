@@ -8,25 +8,16 @@ $ErrorActionPreference = "Stop"
 $Root = Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)
 Set-Location $Root
 
-if (-not (Get-Command docker -ErrorAction SilentlyContinue)) {
-    Write-Error "Docker nao encontrado. Execute scripts\setup.ps1 apos instalar o Docker Desktop."
-}
+Write-Host "=== Evolution API - Iniciar (nativo) ===" -ForegroundColor Cyan
 
 if (-not (Test-Path ".env")) {
     & "$Root\scripts\setup.ps1"
 }
 
 if ($Mode -eq "prod") {
-    Write-Host "Subindo ambiente de PRODUCAO..." -ForegroundColor Yellow
-    docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+    Write-Host "Iniciando ambiente de PRODUCAO..." -ForegroundColor Yellow
+    & "$Root\scripts\start-native.ps1"
 } else {
-    Write-Host "Subindo ambiente de DESENVOLVIMENTO..." -ForegroundColor Green
-    docker compose up -d
+    Write-Host "Iniciando ambiente de DESENVOLVIMENTO..." -ForegroundColor Green
+    & "$Root\scripts\start-native.ps1"
 }
-
-Write-Host ""
-docker compose ps
-Write-Host ""
-Write-Host "Aguarde ~1 minuto na primeira execucao (download de imagens + migrations)." -ForegroundColor Cyan
-Write-Host "API:     http://localhost:8080" -ForegroundColor White
-Write-Host "Manager: http://localhost:3000" -ForegroundColor White
