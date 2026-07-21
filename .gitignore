@@ -4,9 +4,25 @@
 *.log
 data/
 
-# Backups locais
+# Dependencias (Hostoo instala no servidor)
+node_modules/
+
+# Sessoes WhatsApp (nao versionar)
+instances/*
+!instances/.gitkeep
+
+# Clone local de desenvolvimento (opcional)
+api/
+
+# Pacote de release local
+release/upload/
+release/evolution-api-upload.zip
+
+# Backups
 backups/*
 !backups/.gitkeep
 
-# Clone da Evolution API (gerado pelo setup-native.ps1)
-api/
+# Sistema
+.DS_Store
+Thumbs.db
+.install.lock
