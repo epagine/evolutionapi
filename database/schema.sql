@@ -1,8 +1,3 @@
-﻿-- MySQL dump 10.13  Distrib 8.4.3, for Win64 (x86_64)
---
--- Host: localhost    Database: evolution
--- ------------------------------------------------------
--- Server version	8.4.3
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -14,11 +9,6 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Table structure for table `_prisma_migrations`
---
-
 DROP TABLE IF EXISTS `_prisma_migrations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -34,11 +24,6 @@ CREATE TABLE `_prisma_migrations` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `chat`
---
-
 DROP TABLE IF EXISTS `chat`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -58,11 +43,6 @@ CREATE TABLE `chat` (
   CONSTRAINT `Chat_instanceId_fkey` FOREIGN KEY (`instanceId`) REFERENCES `instance` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `chatwoot`
---
-
 DROP TABLE IF EXISTS `chatwoot`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -93,11 +73,6 @@ CREATE TABLE `chatwoot` (
   CONSTRAINT `Chatwoot_instanceId_fkey` FOREIGN KEY (`instanceId`) REFERENCES `instance` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `contact`
---
-
 DROP TABLE IF EXISTS `contact`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -116,11 +91,6 @@ CREATE TABLE `contact` (
   CONSTRAINT `Contact_instanceId_fkey` FOREIGN KEY (`instanceId`) REFERENCES `instance` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `dify`
---
-
 DROP TABLE IF EXISTS `dify`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -153,11 +123,6 @@ CREATE TABLE `dify` (
   CONSTRAINT `Dify_instanceId_fkey` FOREIGN KEY (`instanceId`) REFERENCES `instance` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `difysetting`
---
-
 DROP TABLE IF EXISTS `difysetting`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -185,11 +150,6 @@ CREATE TABLE `difysetting` (
   CONSTRAINT `DifySetting_instanceId_fkey` FOREIGN KEY (`instanceId`) REFERENCES `instance` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `evoai`
---
-
 DROP TABLE IF EXISTS `evoai`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -221,11 +181,6 @@ CREATE TABLE `evoai` (
   CONSTRAINT `Evoai_instanceId_fkey` FOREIGN KEY (`instanceId`) REFERENCES `instance` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `evoaisetting`
---
-
 DROP TABLE IF EXISTS `evoaisetting`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -253,11 +208,6 @@ CREATE TABLE `evoaisetting` (
   CONSTRAINT `EvoaiSetting_instanceId_fkey` FOREIGN KEY (`instanceId`) REFERENCES `instance` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `evolutionbot`
---
-
 DROP TABLE IF EXISTS `evolutionbot`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -289,11 +239,6 @@ CREATE TABLE `evolutionbot` (
   CONSTRAINT `EvolutionBot_instanceId_fkey` FOREIGN KEY (`instanceId`) REFERENCES `instance` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `evolutionbotsetting`
---
-
 DROP TABLE IF EXISTS `evolutionbotsetting`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -321,11 +266,6 @@ CREATE TABLE `evolutionbotsetting` (
   CONSTRAINT `EvolutionBotSetting_instanceId_fkey` FOREIGN KEY (`instanceId`) REFERENCES `instance` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `flowise`
---
-
 DROP TABLE IF EXISTS `flowise`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -357,11 +297,6 @@ CREATE TABLE `flowise` (
   CONSTRAINT `Flowise_instanceId_fkey` FOREIGN KEY (`instanceId`) REFERENCES `instance` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `flowisesetting`
---
-
 DROP TABLE IF EXISTS `flowisesetting`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -389,11 +324,6 @@ CREATE TABLE `flowisesetting` (
   CONSTRAINT `FlowiseSetting_instanceId_fkey` FOREIGN KEY (`instanceId`) REFERENCES `instance` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `instance`
---
-
 DROP TABLE IF EXISTS `instance`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -418,11 +348,6 @@ CREATE TABLE `instance` (
   UNIQUE KEY `Instance_name_key` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `integrationsession`
---
-
 DROP TABLE IF EXISTS `integrationsession`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -445,11 +370,6 @@ CREATE TABLE `integrationsession` (
   CONSTRAINT `IntegrationSession_instanceId_fkey` FOREIGN KEY (`instanceId`) REFERENCES `instance` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `isonwhatsapp`
---
-
 DROP TABLE IF EXISTS `isonwhatsapp`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -463,11 +383,6 @@ CREATE TABLE `isonwhatsapp` (
   UNIQUE KEY `IsOnWhatsapp_remoteJid_key` (`remoteJid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `kafka`
---
-
 DROP TABLE IF EXISTS `kafka`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -483,11 +398,6 @@ CREATE TABLE `kafka` (
   CONSTRAINT `Kafka_instanceId_fkey` FOREIGN KEY (`instanceId`) REFERENCES `instance` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `label`
---
-
 DROP TABLE IF EXISTS `label`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -505,11 +415,6 @@ CREATE TABLE `label` (
   CONSTRAINT `Label_instanceId_fkey` FOREIGN KEY (`instanceId`) REFERENCES `instance` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `media`
---
-
 DROP TABLE IF EXISTS `media`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -528,11 +433,6 @@ CREATE TABLE `media` (
   CONSTRAINT `Media_messageId_fkey` FOREIGN KEY (`messageId`) REFERENCES `message` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `message`
---
-
 DROP TABLE IF EXISTS `message`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -563,11 +463,6 @@ CREATE TABLE `message` (
   CONSTRAINT `Message_sessionId_fkey` FOREIGN KEY (`sessionId`) REFERENCES `integrationsession` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `messageupdate`
---
-
 DROP TABLE IF EXISTS `messageupdate`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -588,11 +483,6 @@ CREATE TABLE `messageupdate` (
   CONSTRAINT `MessageUpdate_messageId_fkey` FOREIGN KEY (`messageId`) REFERENCES `message` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `n8n`
---
-
 DROP TABLE IF EXISTS `n8n`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -625,11 +515,6 @@ CREATE TABLE `n8n` (
   CONSTRAINT `N8n_instanceId_fkey` FOREIGN KEY (`instanceId`) REFERENCES `instance` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `n8nsetting`
---
-
 DROP TABLE IF EXISTS `n8nsetting`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -657,11 +542,6 @@ CREATE TABLE `n8nsetting` (
   CONSTRAINT `N8nSetting_n8nIdFallback_fkey` FOREIGN KEY (`n8nIdFallback`) REFERENCES `n8n` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `nats`
---
-
 DROP TABLE IF EXISTS `nats`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -677,11 +557,6 @@ CREATE TABLE `nats` (
   CONSTRAINT `Nats_instanceId_fkey` FOREIGN KEY (`instanceId`) REFERENCES `instance` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `openaibot`
---
-
 DROP TABLE IF EXISTS `openaibot`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -722,11 +597,6 @@ CREATE TABLE `openaibot` (
   CONSTRAINT `OpenaiBot_openaiCredsId_fkey` FOREIGN KEY (`openaiCredsId`) REFERENCES `openaicreds` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `openaicreds`
---
-
 DROP TABLE IF EXISTS `openaicreds`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -744,11 +614,6 @@ CREATE TABLE `openaicreds` (
   CONSTRAINT `OpenaiCreds_instanceId_fkey` FOREIGN KEY (`instanceId`) REFERENCES `instance` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `openaisetting`
---
-
 DROP TABLE IF EXISTS `openaisetting`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -780,11 +645,6 @@ CREATE TABLE `openaisetting` (
   CONSTRAINT `OpenaiSetting_openaiIdFallback_fkey` FOREIGN KEY (`openaiIdFallback`) REFERENCES `openaibot` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `proxy`
---
-
 DROP TABLE IF EXISTS `proxy`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -804,11 +664,6 @@ CREATE TABLE `proxy` (
   CONSTRAINT `Proxy_instanceId_fkey` FOREIGN KEY (`instanceId`) REFERENCES `instance` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `pusher`
---
-
 DROP TABLE IF EXISTS `pusher`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -829,11 +684,6 @@ CREATE TABLE `pusher` (
   CONSTRAINT `Pusher_instanceId_fkey` FOREIGN KEY (`instanceId`) REFERENCES `instance` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `rabbitmq`
---
-
 DROP TABLE IF EXISTS `rabbitmq`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -849,11 +699,6 @@ CREATE TABLE `rabbitmq` (
   CONSTRAINT `Rabbitmq_instanceId_fkey` FOREIGN KEY (`instanceId`) REFERENCES `instance` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `session`
---
-
 DROP TABLE IF EXISTS `session`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -867,11 +712,6 @@ CREATE TABLE `session` (
   CONSTRAINT `Session_sessionId_fkey` FOREIGN KEY (`sessionId`) REFERENCES `instance` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `setting`
---
-
 DROP TABLE IF EXISTS `setting`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -894,11 +734,6 @@ CREATE TABLE `setting` (
   CONSTRAINT `Setting_instanceId_fkey` FOREIGN KEY (`instanceId`) REFERENCES `instance` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `sqs`
---
-
 DROP TABLE IF EXISTS `sqs`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -914,11 +749,6 @@ CREATE TABLE `sqs` (
   CONSTRAINT `Sqs_instanceId_fkey` FOREIGN KEY (`instanceId`) REFERENCES `instance` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `template`
---
-
 DROP TABLE IF EXISTS `template`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -938,11 +768,6 @@ CREATE TABLE `template` (
   CONSTRAINT `Template_instanceId_fkey` FOREIGN KEY (`instanceId`) REFERENCES `instance` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `typebot`
---
-
 DROP TABLE IF EXISTS `typebot`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -972,11 +797,6 @@ CREATE TABLE `typebot` (
   CONSTRAINT `Typebot_instanceId_fkey` FOREIGN KEY (`instanceId`) REFERENCES `instance` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `typebotsetting`
---
-
 DROP TABLE IF EXISTS `typebotsetting`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -1002,11 +822,6 @@ CREATE TABLE `typebotsetting` (
   CONSTRAINT `TypebotSetting_typebotIdFallback_fkey` FOREIGN KEY (`typebotIdFallback`) REFERENCES `typebot` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `webhook`
---
-
 DROP TABLE IF EXISTS `webhook`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -1027,11 +842,6 @@ CREATE TABLE `webhook` (
   CONSTRAINT `Webhook_instanceId_fkey` FOREIGN KEY (`instanceId`) REFERENCES `instance` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Table structure for table `websocket`
---
-
 DROP TABLE IF EXISTS `websocket`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -1047,10 +857,6 @@ CREATE TABLE `websocket` (
   CONSTRAINT `Websocket_instanceId_fkey` FOREIGN KEY (`instanceId`) REFERENCES `instance` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping routines for database 'evolution'
---
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -1061,4 +867,3 @@ CREATE TABLE `websocket` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-07-09 11:20:31

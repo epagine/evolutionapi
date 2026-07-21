@@ -140,16 +140,36 @@ function import_schema(PDO $pdo, string $schemaFile): void
     if ($sql === false) {
         throw new RuntimeException('Nao foi possivel ler schema.sql');
     }
-    // Remove comentarios de dump MySQL e executa por statements
-    $sql = preg_replace('/^--.*$/m', '', $sql);
-    $sql = preg_replace('/\/\*![0-9]{5}.*?\*\/;?/s', '', $sql);
-    $parts = array_filter(array_map('trim', explode(';', $sql)));
+
+    // Remove BOM (PowerShell/UTF-8) e normaliza quebras de linha
+    $sql = preg_replace('/^\xEF\xBB\xBF/', '', $sql);
+    $sql = str_replace(["\r\n", "\r"], "\n", $sql);
+
+    // Remove comentarios de linha (-- ...)
+    $sql = preg_replace('/^\s*--.*$/m', '', $sql);
+
+    // Remove comentarios condicionais do mysqldump (/*!40101 ... */)
+    $sql = preg_replace('/\/\*![0-9]{5}.*?\*\//s', '', $sql);
+
+    // Remove comentarios de bloco restantes
+    $sql = preg_replace('/\/\*.*?\*\//s', '', $sql);
+
+    $pdo->exec('SET FOREIGN_KEY_CHECKS=0');
+
+    $parts = preg_split('/;\s*\n/', $sql) ?: [];
     foreach ($parts as $part) {
-        if ($part === '' || stripos($part, 'SET ') === 0) {
+        $part = trim($part);
+        if ($part === '') {
+            continue;
+        }
+        // Ignora SETs soltos
+        if (preg_match('/^(SET|LOCK|UNLOCK)\b/i', $part)) {
             continue;
         }
         $pdo->exec($part);
     }
+
+    $pdo->exec('SET FOREIGN_KEY_CHECKS=1');
 }
 
 $step = isset($_GET['step']) ? (int) $_GET['step'] : 1;
@@ -201,8 +221,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$locked) {
             $ok[] = 'Conexao MySQL OK.';
 
             if (!empty($d['import_schema']) && is_file($SCHEMA)) {
-                import_schema($pdo, $SCHEMA);
-                $ok[] = 'Schema SQL importado.';
+                try {
+                    import_schema($pdo, $SCHEMA);
+                    $ok[] = 'Schema SQL importado.';
+                } catch (Throwable $schemaErr) {
+                    $ok[] = 'AVISO: schema automatico falhou. Importe schema.sql no phpMyAdmin. Detalhe: ' . $schemaErr->getMessage();
+                }
             }
 
             write_env($d);
@@ -221,7 +245,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$locked) {
                     $npmDone = true;
                     run_cmd('cd ' . escapeshellarg($ROOT) . ' && npx prisma generate --schema prisma/mysql-schema.prisma');
                 } else {
-                    $errors[] = 'npm install via PHP falhou. Use o Node.js App do cPanel (passo final). Detalhe: ' . substr($out, 0, 400);
+                    $ok[] = 'AVISO: npm via PHP indisponivel. Use o Node.js App do painel para NPM Install + Start.';
                 }
             }
 
